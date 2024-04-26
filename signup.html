@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="signupApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup page</title>
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="signup.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="SignupController">
+    <section class="container">
+        <div class="form" ng-show="showLogin">
+            <header style="font-size: 24px;">Login</header>
+            <form id="login-form" ng-submit="login()">
+                <input type="email" id="login-email" name="email" ng-model="loginData.email" placeholder="Email" required>
+                <input type="password" id="login-password" name="password" ng-model="loginData.password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <div class="form-link">
+                <span>Don't have an account? <a href="#" class="link" ng-click="showSignupForm()">Signup</a></span>
+            </div>
+        </div>
+
+        <div class="form" ng-show="showSignup">
+            <header style="font-size: 24px;">Signup</header>
+            <form id="signup-form" ng-submit="signup()">
+                <input type="email" id="signup-email" name="email" ng-model="signupData.email" placeholder="Email" required>
+                <input type="password" id="signup-password" name="password" ng-model="signupData.password" placeholder="Password" required>
+                <input type="password" id="confirm-password" name="confirm_password" ng-model="signupData.confirmPassword" placeholder="Confirm password" required>
+                <input type="text" id="full-name" name="full_name" ng-model="signupData.fullName" placeholder="Full Name" required>
+                <input type="text" id="phone" name="phone" ng-model="signupData.phone" placeholder="Phone Number" required>
+                <button type="submit">Signup</button>
+            </form>
+            <div class="form-link">
+                <span>Already have an account? <a href="#" class="link" ng-click="showLoginForm()">Login</a></span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        var app = angular.module('signupApp', []);
+
+        app.controller('SignupController', function($scope) {
+            $scope.showLogin = true;
+            $scope.showSignup = false;
+
+            $scope.loginData = {};
+            $scope.signupData = {};
+
+            $scope.login = function() {
+                // Implement login functionality here
+                console.log('Login data:', $scope.loginData);
+            };
+
+            $scope.signup = function() {
+                // Implement signup functionality here
+                console.log('Signup data:', $scope.signupData);
+            };
+
+            $scope.showSignupForm = function() {
+                $scope.showLogin = false;
+                $scope.showSignup = true;
+            };
+
+            $scope.showLoginForm = function() {
+                $scope.showLogin = true;
+                $scope.showSignup = false;
+            };
+        });
+    </script>
+</body>
+</html>
